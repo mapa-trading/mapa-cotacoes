@@ -1,5 +1,6 @@
 package io.github.mapatrading.cotacoes.entity;
 
+import io.github.mapatrading.cotacoes.enums.TipoAtivoFinanceiro;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AtivoFinanceiro {
 
     @Id
@@ -27,4 +28,14 @@ public class AtivoFinanceiro {
     @Column(name = "moeda", nullable = false)
     private String moeda;
 
+    public TipoAtivoFinanceiro getTipoAtivo() {
+
+        TipoAtivoFinanceiro tipo;
+
+        if (this instanceof Acao) tipo = TipoAtivoFinanceiro.ACAO;
+        else if (this instanceof Crypto) tipo = TipoAtivoFinanceiro.CRYPTO;
+        else tipo = TipoAtivoFinanceiro.MOEDA;
+
+        return tipo;
+    }
 }

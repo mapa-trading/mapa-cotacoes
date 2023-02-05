@@ -1,0 +1,50 @@
+### Adicionar uma cotação de ação
+POST http://localhost:8080/cotacoes
+Content-Type: application/json
+Authorization: "Bearer token"
+
+## body
+{
+  "sigla": "EMBR3",
+  "dataHora": "2023-01-01T10:19",
+  "valor": 1.7
+}
+
+### Adicionar outra cotação de crypto moeda
+POST http://localhost:8080/cotacoes
+Content-Type: application/json
+Authorization: "Bearer token"
+
+## body
+{
+  "sigla": "BTC",
+  "dataHora": "2023-01-01T10:19",
+  "valor": 4.7299
+}
+
+
+### Buscar as cotações de determinados ativos financeiros
+GET http://localhost:8080/cotacoes?siglas=EMBR3,BTC&startDate=2023-01-01&endDate=2023-01-31
+Accept: application/json
+
+## Retorno
+[
+  {
+    "tipo": "ACAO",
+    "sigla": "EMBR3",
+    "dataHora": "2023-01-01T10:15:00",
+    "valor": 1.50
+  },
+  {
+    "tipo": "ACAO",
+    "sigla": "EMBR3",
+    "dataHora": "2023-01-01T10:18:00",
+    "valor": 1.60
+  },
+  {
+    "tipo": "CRYPTO",
+    "sigla": "BTC",
+    "dataHora": "2023-01-01T10:18:00",
+    "valor": 4.73
+  }
+]

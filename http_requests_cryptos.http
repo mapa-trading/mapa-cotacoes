@@ -1,0 +1,15 @@
+### Incluir uma ativo financeiro do tipo crypto
+POST http://localhost:8080/cryptos
+Content-Type: application/json
+Authorization: "Bearer token"
+
+## body
+{
+  "nome": "Bitcoin USD",
+  "sigla": "BTC",
+  "moeda": "BRL",
+  "imagemUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+}
+
+#### Deletar um ativo financeiro do tipo ação
+DELETE /http://localhost:8080/acoes/20ae5dc1-8f98-4c61-b8ce-7aadfcd808f9

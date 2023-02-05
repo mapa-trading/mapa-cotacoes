@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -30,10 +34,27 @@ public class Cotacao {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ativo_financeiro", foreignKey = @ForeignKey(name = "fk_ativo_financeiro"))
+    @JoinColumn(name = "id_ativo_financeiro", foreignKey = @ForeignKey(name = "fk_ativo_financeiro"), nullable = false)
     private AtivoFinanceiro ativoFinanceiro;
     @Column(name = "data_hora", nullable = false)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime dataHora;
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
+
+    public Cotacao(AtivoFinanceiro ativoFinanceiro, LocalDateTime dataHora, BigDecimal valor) {
+        setAtivoFinanceiro(ativoFinanceiro);
+        setDataHora(dataHora);
+        setValor(valor);
+    }
+
+    public Cotacao() {
+    }
+
+    public CotacaoRequest toCotacaoRequest() {
+        return new CotacaoRequest(getAtivoFinanceiro().getTipoAtivo(), getAtivoFinanceiro().getSigla(), getDataHora(), getValor());
+    }
 }
+
+

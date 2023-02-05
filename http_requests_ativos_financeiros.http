@@ -1,0 +1,15 @@
+### Buscar um ativo financeiro pela sigla
+GET http://localhost:8080/ativos-financeiros/EMBR3
+Accept: application/json
+
+## Retorno
+{
+  "id": "ccd0f156-54e9-4d63-95c5-16524efa8c33",
+  "nome": "Embraer",
+  "sigla": "EMBR3",
+  "moeda": "BRL",
+  "descricao": "Projeto. Desenvolvimento. Fabricação. Comercialização de Aeronaves E Sistemas E Fornecimento de Suporte E Serviços de Pós-venda.",
+  "razaoSocial": "Embraer S.A.",
+  "website": "http://www.embraer.com.br/",
+  "tipoAtivo": "ACAO"
+}

@@ -1,7 +1,9 @@
 ### Incluir uma ativo financeiro do tipo ação
-POST http://localhost:8080/acao
+POST http://localhost:8080/acoes
 Content-Type: application/json
+Authorization: "Bearer token"
 
+## body
 {
   "nome": "Embraer",
   "sigla": "EMBR3",
@@ -11,6 +13,5 @@ Content-Type: application/json
   "website": "http://www.embraer.com.br/"
 }
 
-#### Deletar um ativo financeiro do tipo ação
-DELETE /http://localhost:8080/acao/20ae5dc1-8f98-4c61-b8ce-7aadfcd808f9
-
+### Deletar um ativo financeiro do tipo ação
+DELETE /http://localhost:8080/acoes/20ae5dc1-8f98-4c61-b8ce-7aadfcd808f9

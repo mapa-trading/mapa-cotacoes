@@ -9,4 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface AtivoFinanceiroRepository extends JpaRepository<AtivoFinanceiro, UUID> {
+
+    AtivoFinanceiro findAtivoFinanceiroBySigla(String sigla);
+
 }
