@@ -13,3 +13,47 @@ Accept: application/json
   "website": "http://www.embraer.com.br/",
   "tipoAtivo": "ACAO"
 }
+
+### Buscar todos os ativos financeiros
+GET http://localhost:8080/ativos-financeiros
+Accept: application/json
+
+## retorno
+[
+  {
+    "id": "8656ed21-9acf-46a4-9578-05bd4489dac9",
+    "nome": "Bitcoin USD",
+    "sigla": "BTC",
+    "moeda": "BRL",
+    "imagemUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
+    "tipoAtivo": "CRYPTO"
+  },
+  {
+    "id": "ccd0f156-54e9-4d63-95c5-16524efa8c33",
+    "nome": "Embraer",
+    "sigla": "EMBR3",
+    "moeda": "BRL",
+    "descricao": "Projeto. Desenvolvimento. Fabricação. Comercialização de Aeronaves E Sistemas E Fornecimento de Suporte E Serviços de Pós-venda.",
+    "razaoSocial": "Embraer S.A.",
+    "website": "http://www.embraer.com.br/",
+    "tipoAtivo": "ACAO"
+  }
+]
+
+### Buscar todos os ativos financeiros por tipo
+GET http://localhost:8080/ativos-financeiros/tipos/ACAO
+Accept: application/json
+
+## retorno
+[
+  {
+    "id": "ccd0f156-54e9-4d63-95c5-16524efa8c33",
+    "nome": "Embraer",
+    "sigla": "EMBR3",
+    "moeda": "BRL",
+    "descricao": "Projeto. Desenvolvimento. Fabricação. Comercialização de Aeronaves E Sistemas E Fornecimento de Suporte E Serviços de Pós-venda.",
+    "razaoSocial": "Embraer S.A.",
+    "website": "http://www.embraer.com.br/",
+    "tipoAtivo": "ACAO"
+  }
+]
