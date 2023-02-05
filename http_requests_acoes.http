@@ -1,0 +1,16 @@
+### Incluir uma ativo financeiro do tipo ação
+POST http://localhost:8080/acao
+Content-Type: application/json
+
+{
+  "nome": "Embraer",
+  "sigla": "EMBR3",
+  "moeda": "BRL",
+  "descricao": "Projeto. Desenvolvimento. Fabricação. Comercialização de Aeronaves E Sistemas E Fornecimento de Suporte E Serviços de Pós-venda.",
+  "razaoSocial": "Embraer S.A.",
+  "website": "http://www.embraer.com.br/"
+}
+
+#### Deletar um ativo financeiro do tipo ação
+DELETE /http://localhost:8080/acao/20ae5dc1-8f98-4c61-b8ce-7aadfcd808f9
+
