@@ -1,5 +1,6 @@
 package io.github.mapatrading.cotacoes.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -32,9 +33,11 @@ public class Notificacao {
     @Column(name = "valor_atual", nullable = false)
     private BigDecimal valorAtual;
 
+    @ApiModelProperty(value = "Um valor para mínimo para ser notificado")
     @Column(name = "valor_up", nullable = false)
     private BigDecimal valorUp;
 
+    @ApiModelProperty(value = "Um valor para máximo para ser notificado")
     @Column(name = "valor_down", nullable = false)
     private BigDecimal valorDown;
     @Column(name = "notificado", nullable = false)

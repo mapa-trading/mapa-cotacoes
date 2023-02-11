@@ -1,6 +1,7 @@
 package io.github.mapatrading.cotacoes.entity;
 
 import io.github.mapatrading.cotacoes.enums.TipoAtivoFinanceiro;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -21,10 +22,13 @@ public class AtivoFinanceiro {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private UUID id;
+    @ApiModelProperty(value = "Nome do Ativo financeiro")
     @Column(name = "nome", nullable = false)
     private String nome;
     @Column(name = "sigla", nullable = false)
     private String sigla;
+
+    @ApiModelProperty(value = "Moeda no qual o ativo é negociado")
     @Column(name = "moeda", nullable = false)
     private String moeda;
 

@@ -2,6 +2,9 @@ package io.github.mapatrading.cotacoes.controller;
 
 import io.github.mapatrading.cotacoes.entity.Acao;
 import io.github.mapatrading.cotacoes.repository.AcaoRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +29,13 @@ public class AcaoController {
     @Autowired
     private AcaoRepository acaoRepository;
 
-    @PostMapping
+    @ApiOperation(value = "Adiciona um ativo financeiro do tipo Ação")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Uma ação foi incluida com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<Acao> post(@Valid @RequestBody Acao acao, HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");
         // TODO(APlicar autorização JWT)
