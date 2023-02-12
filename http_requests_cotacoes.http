@@ -10,9 +10,6 @@ Authorization: "Bearer token"
   "valor": 1.7
 }
 
-### atualizar cotacoes
-POST http://127.0.0.1:5000/atualizar-cotacoes
-
 ### Adicionar outra cotação de crypto moeda
 POST http://localhost:8080/cotacoes
 Content-Type: application/json

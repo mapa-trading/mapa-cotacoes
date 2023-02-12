@@ -1,0 +1,14 @@
+
+
+### starta dados inciais PROD
+POST https://mapa-job.herokuapp.com/dados-iniciais
+
+### update cotacoes PROD
+POST https://mapa-job.herokuapp.com/atualizar-cotacoes
+
+
+### starta dados inciais LOCAL
+POST http://localhost:8081/dados-iniciais
+
+### update cotacoes LOCAL
+POST http://localhost:8081/atualizar-cotacoes

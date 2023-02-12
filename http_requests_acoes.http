@@ -16,5 +16,3 @@ Authorization: "Bearer token"
 ### Deletar um ativo financeiro do tipo ação
 DELETE /http://localhost:8080/acoes/20ae5dc1-8f98-4c61-b8ce-7aadfcd808f9
 
-### starta dados inciais
-POST http://127.0.0.1:5000/dados-iniciais
