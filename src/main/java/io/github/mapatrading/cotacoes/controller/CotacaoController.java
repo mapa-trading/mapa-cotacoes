@@ -35,6 +35,10 @@ public class CotacaoController {
 
     @PostMapping
     public ResponseEntity<CotacaoRequest> post(@RequestBody CotacaoRequest request) {
+        System.out.println("--------------------");
+        System.out.println(request);
+        System.out.println("--------------------");
+
         AtivoFinanceiro ativoFinanceiro = ativoFinanceiroRepository.findAtivoFinanceiroBySigla(request.getSigla());
 
         if (ativoFinanceiro != null) {
