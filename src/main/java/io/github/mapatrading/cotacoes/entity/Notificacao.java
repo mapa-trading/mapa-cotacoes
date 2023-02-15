@@ -34,12 +34,24 @@ public class Notificacao {
     private BigDecimal valorAtual;
 
     @ApiModelProperty(value = "Um valor para mínimo para ser notificado")
-    @Column(name = "valor_up", nullable = false)
-    private BigDecimal valorUp;
+    @Column(name = "valor_maximo", nullable = false)
+    private BigDecimal valorMaximo;
 
     @ApiModelProperty(value = "Um valor para máximo para ser notificado")
-    @Column(name = "valor_down", nullable = false)
-    private BigDecimal valorDown;
+    @Column(name = "valor_minimo", nullable = false)
+    private BigDecimal valorMinimo;
     @Column(name = "notificado", nullable = false)
     private Boolean notificado;
+
+    public Notificacao() {
+    }
+
+    public Notificacao(UUID idUsuario, AtivoFinanceiro ativoFinanceiro, BigDecimal valorAtual, BigDecimal valorMaximo, BigDecimal valorMinimo) {
+        setIdUsuario(idUsuario);
+        setAtivoFinanceiro(ativoFinanceiro);
+        setValorAtual(valorAtual);
+        setValorMaximo(valorMaximo);
+        setValorMinimo(valorMinimo);
+        setNotificado(Boolean.FALSE);
+    }
 }

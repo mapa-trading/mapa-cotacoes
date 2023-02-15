@@ -11,8 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Data
@@ -23,11 +22,20 @@ public class Favorito {
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private UUID id;
 
+    @NotBlank(message = "É necessário informar o id do Usuario")
     @Column(name = "id_usuario", nullable = false)
     private UUID idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ativo_financeiro", foreignKey = @ForeignKey(name = "fk_ativo_financeiro"), nullable = false)
     private AtivoFinanceiro ativoFinanceiro;
+
+    public Favorito(AtivoFinanceiro ativoFinanceiro, UUID idUsuario) {
+        setAtivoFinanceiro(ativoFinanceiro);
+        setIdUsuario(idUsuario);
+    }
+
+    public Favorito() {
+    }
 
 }
