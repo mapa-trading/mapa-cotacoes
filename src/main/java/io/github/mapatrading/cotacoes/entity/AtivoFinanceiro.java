@@ -21,6 +21,7 @@ public class AtivoFinanceiro {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
+    @ApiModelProperty(value = "Id do ativo", hidden = true)
     private UUID id;
     @ApiModelProperty(value = "Nome do Ativo financeiro")
     @Column(name = "nome", nullable = false)
