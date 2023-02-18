@@ -21,11 +21,12 @@ public class NotificacaoService {
 
     public void enviaNotificacao(Cotacao cotacao) {
 
-
-
         notificacaoRepository.findAll().stream()
-                .filter(notificacao -> cotacao.isBetween(notificacao.getValorMinimo(), notificacao.getValorMaximo()))
+                .filter(notificacao -> cotacao.isBetween(notificacao.getValorMinimo(), notificacao.getValorMaximo()) && !notificacao.getNotificado())
                 .forEach(notificacao -> {
+                    notificacao.setNotificado(true);
+                    notificacaoRepository.save(notificacao);
+
                     final Usuario usuario = usuarioService.getUsuarioById(notificacao.getIdUsuario());
                     emailService.enviaEmailCotacao(usuario, cotacao);
                 });
