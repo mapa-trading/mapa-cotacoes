@@ -52,7 +52,7 @@ public class NotificacaoController {
     @PostMapping
     public ResponseEntity<Notificacao> post(@PathVariable UUID idUsuario, @Valid @RequestBody NotificacaoRequest notificacaoRequest) {
         AtivoFinanceiro ativoFinanceiro = ativoFinanceiroRepository.findAtivoFinanceiroBySigla(notificacaoRequest.getSigla());
-        BigDecimal valorAtual = cotacaoRepository.findByAtivoFinanceiroOrderByDataHoraAsc(ativoFinanceiro).stream().findFirst().get().getValor();
+        BigDecimal valorAtual = cotacaoRepository.findByAtivoFinanceiroOrderByDataHoraDesc(ativoFinanceiro).stream().findFirst().get().getValor();
         Notificacao notificacao = new Notificacao(
                 idUsuario,
                 ativoFinanceiro,
