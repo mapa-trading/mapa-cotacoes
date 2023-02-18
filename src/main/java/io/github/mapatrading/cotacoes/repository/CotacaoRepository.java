@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Repository
 public interface CotacaoRepository extends JpaRepository<Cotacao, UUID> {
-    @Query("select c from Cotacao c where c.ativoFinanceiro = ?1 order by c.dataHora")
+    @Query("select c from Cotacao c where c.ativoFinanceiro = ?1 order by c.dataHora desc")
     List<Cotacao> findByAtivoFinanceiroOrderByDataHoraDesc(AtivoFinanceiro ativoFinanceiro);
 
     List<Cotacao> findAllByAtivoFinanceiroAndDataHoraBetween(AtivoFinanceiro ativoFinanceiro, LocalDateTime dataHora, LocalDateTime dataHora2);
