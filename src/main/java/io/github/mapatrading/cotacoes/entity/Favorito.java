@@ -1,5 +1,6 @@
 package io.github.mapatrading.cotacoes.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -22,11 +23,10 @@ public class Favorito {
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private UUID id;
 
-    @NotBlank(message = "É necessário informar o id do Usuario")
     @Column(name = "id_usuario", nullable = false)
     private UUID idUsuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_ativo_financeiro", foreignKey = @ForeignKey(name = "fk_ativo_financeiro"), nullable = false)
     private AtivoFinanceiro ativoFinanceiro;
 

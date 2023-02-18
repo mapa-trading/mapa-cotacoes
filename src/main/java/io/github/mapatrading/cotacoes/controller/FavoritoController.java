@@ -1,9 +1,11 @@
 package io.github.mapatrading.cotacoes.controller;
 
 
+import io.github.mapatrading.cotacoes.entity.AtivoFinanceiro;
 import io.github.mapatrading.cotacoes.entity.Favorito;
 import io.github.mapatrading.cotacoes.repository.AtivoFinanceiroRepository;
 import io.github.mapatrading.cotacoes.repository.FavoritoRepository;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,14 +42,14 @@ public class FavoritoController {
 
     @PostMapping
     public ResponseEntity<Favorito> post(@PathVariable UUID idUsuario, @Valid @RequestBody String sigla) {
-        Favorito favorito = new Favorito(ativoFinanceiroRepository.findAtivoFinanceiroBySigla(sigla), idUsuario);
-
+        AtivoFinanceiro ativoFiananceiro = ativoFinanceiroRepository.findAtivoFinanceiroBySigla(sigla);
+        Favorito favorito = new Favorito(ativoFiananceiro, idUsuario);
         favoritoRepository.save(favorito);
         return new ResponseEntity<>(favorito, OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Object> delete(@PathVariable UUID id) {
+    public ResponseEntity<Object> delete(@PathVariable(required = false) String idUsuario, @PathVariable UUID id) {
         Optional<Favorito> favorito = favoritoRepository.findById(id);
         if (favorito.isPresent()) {
             favoritoRepository.delete(favorito.get());

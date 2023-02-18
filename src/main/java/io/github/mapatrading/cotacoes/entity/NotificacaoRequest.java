@@ -13,11 +13,9 @@ public class NotificacaoRequest {
     private String sigla;
 
     @ApiModelProperty(value = "Um valor para mínimo para ser notificado")
-    @NotBlank(message = "É necessário informar o valor maáximo")
     private BigDecimal valorMaximo;
 
     @ApiModelProperty(value = "Um valor para máximo para ser notificado")
-    @NotBlank(message = "É necessário informar o valor minimo")
     private BigDecimal valorMinimo;
 
 

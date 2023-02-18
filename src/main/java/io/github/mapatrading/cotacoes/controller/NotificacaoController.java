@@ -1,6 +1,7 @@
 package io.github.mapatrading.cotacoes.controller;
 
 import io.github.mapatrading.cotacoes.entity.AtivoFinanceiro;
+import io.github.mapatrading.cotacoes.entity.Cotacao;
 import io.github.mapatrading.cotacoes.entity.Favorito;
 import io.github.mapatrading.cotacoes.entity.Notificacao;
 import io.github.mapatrading.cotacoes.entity.NotificacaoRequest;
@@ -51,10 +52,11 @@ public class NotificacaoController {
     @PostMapping
     public ResponseEntity<Notificacao> post(@PathVariable UUID idUsuario, @Valid @RequestBody NotificacaoRequest notificacaoRequest) {
         AtivoFinanceiro ativoFinanceiro = ativoFinanceiroRepository.findAtivoFinanceiroBySigla(notificacaoRequest.getSigla());
+        BigDecimal valorAtual = cotacaoRepository.findByAtivoFinanceiroOrderByDataHoraAsc(ativoFinanceiro).stream().findFirst().get().getValor();
         Notificacao notificacao = new Notificacao(
                 idUsuario,
                 ativoFinanceiro,
-                cotacaoRepository.findByAtivoFinanceiroOrderByDataHoraAsc(ativoFinanceiro).getValor(),
+                valorAtual,
                 notificacaoRequest.getValorMaximo(),
                 notificacaoRequest.getValorMinimo()
         );

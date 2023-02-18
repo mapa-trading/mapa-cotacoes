@@ -27,7 +27,7 @@ public class Notificacao {
     @Column(name = "id_usuario", nullable = false)
     private UUID idUsuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_ativo_financeiro", foreignKey = @ForeignKey(name = "fk_ativo_financeiro"), nullable = false)
     private AtivoFinanceiro ativoFinanceiro;
     @Column(name = "valor_atual", nullable = false)
