@@ -55,6 +55,10 @@ public class Cotacao {
     public CotacaoRequest toCotacaoRequest() {
         return new CotacaoRequest(getAtivoFinanceiro().getTipoAtivo(), getAtivoFinanceiro().getSigla(), getDataHora(), getValor());
     }
+
+    public Boolean isBetween(BigDecimal valor1, BigDecimal valor2) {
+        return getValor().compareTo(valor1) >= 0 && getValor().compareTo(valor2) <= 0;
+    }
 }
 
 

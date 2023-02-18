@@ -5,6 +5,7 @@ import io.github.mapatrading.cotacoes.entity.Cotacao;
 import io.github.mapatrading.cotacoes.entity.CotacaoRequest;
 import io.github.mapatrading.cotacoes.repository.AtivoFinanceiroRepository;
 import io.github.mapatrading.cotacoes.repository.CotacaoRepository;
+import io.github.mapatrading.cotacoes.service.NotificacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,9 @@ public class CotacaoController {
     @Autowired
     private AtivoFinanceiroRepository ativoFinanceiroRepository;
 
+    @Autowired
+    private NotificacaoService notificacaoService;
+
     @PostMapping
     public ResponseEntity<CotacaoRequest> post(@RequestBody CotacaoRequest request) {
         AtivoFinanceiro ativoFinanceiro = ativoFinanceiroRepository.findAtivoFinanceiroBySigla(request.getSigla());
@@ -40,6 +44,9 @@ public class CotacaoController {
         if (ativoFinanceiro != null) {
             Cotacao cotacao = new Cotacao(ativoFinanceiro, request.getDataHora(), request.getValor());
             cotacaoRepository.save(cotacao);
+
+            notificacaoService.enviaNotificacao(cotacao);
+
             return new ResponseEntity<>(cotacao.toCotacaoRequest(), OK);
         } else return new ResponseEntity<>(NOT_FOUND);
     }
