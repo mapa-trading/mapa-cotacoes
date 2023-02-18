@@ -19,16 +19,27 @@ public class NotificacaoService {
     @Autowired
     NotificacaoRepository notificacaoRepository;
 
+    /**
+     * O sistema pega a cotação e verifica se alguem configurou para receber uma notificação dele
+     * A notificação é enviada somente uma vez pois o parametro notificado é ativado
+     * A notificação só é enviada se no cadastro do usuário estiver configurado para receber notificação por email
+     *
+     * @param cotacao
+     */
     public void enviaNotificacao(Cotacao cotacao) {
 
         notificacaoRepository.findAll().stream()
                 .filter(notificacao -> cotacao.isBetween(notificacao.getValorMinimo(), notificacao.getValorMaximo()) && !notificacao.getNotificado())
                 .forEach(notificacao -> {
+
                     notificacao.setNotificado(true);
                     notificacaoRepository.save(notificacao);
 
                     final Usuario usuario = usuarioService.getUsuarioById(notificacao.getIdUsuario());
-                    emailService.enviaEmailCotacao(usuario, cotacao);
+
+                    if (usuario.getReceberNotificacoesEmail()) {
+                        emailService.enviaEmailCotacao(usuario, cotacao);
+                    }
                 });
     }
 }
